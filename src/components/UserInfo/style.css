@@ -1,0 +1,13 @@
+.avatar{
+    width: '70px';
+    height: '70px';
+}
+
+div#alert-dialog-title{
+    display: flex;
+    flex-flow: row;
+}
+
+.items-dialog{
+    align-items: center;
+}

@@ -9,6 +9,8 @@ import User from '../../types/User';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { Avatar } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import "./style.css"
 
 interface CartInfoProps {
     open: boolean;
@@ -16,7 +18,28 @@ interface CartInfoProps {
     user: User;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+    small: {
+      width: theme.spacing(3),
+      height: theme.spacing(3),
+    },
+    large: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+    },
+  }),
+);
+
+
 const UserInfo: React.FC<CartInfoProps> = (props) => {
+    const classes = useStyles();
     var username = ''
     var name = ""
     var email = ""
@@ -41,9 +64,9 @@ const UserInfo: React.FC<CartInfoProps> = (props) => {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    <Grid container spacing={2}>
-                        <Grid item xs>
-                            <Avatar alt="Remy Sharp" src={`https://picsum.photos/100?${id}`} style={{ width: 'theme.spacing(7)', height: 'theme.spacing(7)' }} />
+                    <Grid className={"items-dialog"} container spacing={2}>
+                        <Grid item xs style={{display: 'flex'}}>
+                            <Avatar alt="Remy Sharp" src={`https://picsum.photos/100?${id}`} className={classes.large}/>
                         </Grid>
                         <Grid item xs>
                             {username}
@@ -55,22 +78,26 @@ const UserInfo: React.FC<CartInfoProps> = (props) => {
                         <Grid container>
                             <Grid item xs={6}>
                                 <DialogContentText id="alert-dialog-description">
-                                    Name: {name}
+                                    <b> Name: </b>
+                                    {name}
                                 </DialogContentText>
                             </Grid>
                             <Grid item xs={6}>
                                 <DialogContentText id="alert-dialog-description">
-                                    Email: {email}
+                                    <b> Email: </b>
+                                    {email}
                                 </DialogContentText>
                             </Grid>
                             <Grid item xs={6}>
                                 <DialogContentText id="alert-dialog-description">
-                                    City: {city}
+                                    <b> City: </b>
+                                    {city}
                                 </DialogContentText>
                             </Grid>
                             <Grid item xs={6}>
                                 <DialogContentText id="alert-dialog-description">
-                                    City: {company}
+                                    <b> Company: </b>
+                                    {company}
                                 </DialogContentText>
                             </Grid>
                         </Grid>
