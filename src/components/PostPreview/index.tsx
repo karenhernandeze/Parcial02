@@ -48,6 +48,11 @@ const PostPreview: React.FC<PostPreviewProps> = (props) => {
   return (
     <div className={"container-preview"}>
       <Card className={"card-root"}>
+        <CardMedia
+          className={"card-cover"}
+          image={`https://picsum.photos/100?${id}`}
+          title="Live from sd album cover"
+        />
         <div className={"card-details"}>
           <CardContent className={"card-content"}>
             <Typography component="h5" variant="h5">
@@ -64,11 +69,7 @@ const PostPreview: React.FC<PostPreviewProps> = (props) => {
           </CardActions>
           <UserModal isModalVisible={open} closeModal={handleCloseDialog} user={props.user}></UserModal>
         </div>
-        <CardMedia
-          className={"card-cover"}
-          image={`https://picsum.photos/100?${id}`}
-          title="Live from sd album cover"
-        />
+
       </Card>
       <br />
       <br />
