@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -8,7 +7,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import User from '../../types/User';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { Avatar } from '@material-ui/core';
+import { Avatar, IconButton } from '@material-ui/core';
+import CloseIcon from "@material-ui/icons/Close";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./style.css"
 
@@ -19,25 +19,28 @@ interface CartInfoProps {
 }
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    small: {
-      width: theme.spacing(3),
-      height: theme.spacing(3),
-    },
-    large: {
-      width: theme.spacing(7),
-      height: theme.spacing(7),
-    },
-  }),
+    createStyles({
+        root: {
+            display: 'flex',
+            '& > *': {
+                margin: theme.spacing(1),
+            },
+        },
+        small: {
+            width: theme.spacing(3),
+            height: theme.spacing(3),
+        },
+        large: {
+            width: theme.spacing(7),
+            height: theme.spacing(7),
+        },
+    }),
 );
 
-
+/**
+ * User Info elements
+ * @returns UserInfo UI elements
+ */
 const UserInfo: React.FC<CartInfoProps> = (props) => {
     const classes = useStyles();
     var username = ''
@@ -64,12 +67,19 @@ const UserInfo: React.FC<CartInfoProps> = (props) => {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    <Grid className={"items-dialog"} container spacing={2}>
-                        <Grid item xs style={{display: 'flex'}}>
-                            <Avatar alt="Remy Sharp" src={`https://picsum.photos/100?${id}`} className={classes.large}/>
+                    <Grid className={"items-dialog"} container>
+                        <Grid item xs={2}>
+                            <Avatar alt="Remy Sharp" src={`https://picsum.photos/100?${id}`} className={classes.large} />
                         </Grid>
-                        <Grid item xs>
+                        <Grid item xs={8}>
                             {username}
+                        </Grid>
+                        <Grid item xs={2}>
+                            <DialogActions>
+                                <IconButton color="primary" aria-label="add an alarm" onClick={props.handleClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </DialogActions>
                         </Grid>
                     </Grid>
                 </DialogTitle>
@@ -103,11 +113,6 @@ const UserInfo: React.FC<CartInfoProps> = (props) => {
                         </Grid>
                     </Box>
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={props.handleClose} color="primary" autoFocus>
-                        Dismiss
-                    </Button>
-                </DialogActions>
             </Dialog>
         </div>
     );

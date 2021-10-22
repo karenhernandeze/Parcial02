@@ -21,3 +21,10 @@
 .card-cover{
     min-width: 200px;
 }
+
+.username-info{
+    color: #3f51b5;
+    cursor: pointer;    
+    padding-left: 8px;
+    padding-bottom: 8px;
+}

@@ -2,17 +2,17 @@ import React from "react";
 import UserInfo from "../../components/UserInfo/index";
 import User from "../../types/User";
 
-interface CartProps {
+interface UserProps {
     isModalVisible: boolean;
     closeModal(event: any): void
     user: User;
 }
 
 /**
- * Header Container
+ * User Modal Container
  * @extends {Component<Props>}
  */
-class CartModal extends React.Component<CartProps, {}> {
+class UserModal extends React.Component<UserProps, {}> {
 
     /**
      * Renders the container.
@@ -29,4 +29,4 @@ class CartModal extends React.Component<CartProps, {}> {
     }
 }
 
-export default CartModal;
+export default UserModal;

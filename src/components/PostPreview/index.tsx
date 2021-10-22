@@ -16,8 +16,8 @@ interface PostPreviewProps {
 }
 
 /**
- * Product preview elements
- * @returns ProductPreview UI elements
+ * Post preview elements
+ * @returns PostPreview UI elements
  */
 const PostPreview: React.FC<PostPreviewProps> = (props) => {
   var username = ''
@@ -58,11 +58,9 @@ const PostPreview: React.FC<PostPreviewProps> = (props) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" color="primary"
-              onClick={handleOpenDialog}
-            >
+            <Typography className="username-info" onClick={handleOpenDialog}>
               {username}
-            </Button>
+            </Typography>
           </CardActions>
           <UserModal isModalVisible={open} closeModal={handleCloseDialog} user={props.user}></UserModal>
         </div>
