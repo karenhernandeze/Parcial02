@@ -1,0 +1,23 @@
+.container-preview{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.card-root{
+    display: flex;
+    width: 80%;
+}
+
+.card-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content{
+    flex: 1 0 auto;
+}
+
+.card-cover{
+    min-width: 200px;
+}

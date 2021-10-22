@@ -1,4 +1,3 @@
-import { userInfo } from "os";
 import React from "react";
 import PostPreview from "../../components/PostPreview";
 import PostService from "../../services/PostsService"
@@ -36,6 +35,7 @@ class PostsList extends React.Component<{}, ListState> {
       }
     )
   }
+
   /**
    * Renders the container.
    * @return {string} - HTML markup for the container
@@ -46,7 +46,6 @@ class PostsList extends React.Component<{}, ListState> {
       const user = this.state.users.find( userInfo => userInfo.id === post.userId) as User
         postsList.push(<PostPreview post={post} user={user}/>)
     });
-    // <PostPreview> </PostPreview>
     return postsList;
   }
 }

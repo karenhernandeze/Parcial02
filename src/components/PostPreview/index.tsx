@@ -1,80 +1,80 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import "./style.css";
 import PostItem from "../../types/PostItem";
 import User from '../../types/User';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import UserModal from '../../containers/UserModal';
+import "./style.css";
 
 interface PostPreviewProps {
   post: PostItem;
   user: User;
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-  },
-  inline: {
-    display: 'inline',
-  },
-}));
-
 /**
  * Product preview elements
  * @returns ProductPreview UI elements
  */
 const PostPreview: React.FC<PostPreviewProps> = (props) => {
-  // if (
-  //     props.post !== undefined &&
-  //     props.post !== undefined
-  // ) {
-  //     // listPrice = props.product.childSkus[0].listPrice;
-  // }
+  var username = ''
+  if (
+    props.post !== undefined &&
+    props.user !== undefined
+  ) {
+    username = props.user.username;
+  }
 
-  const classes = useStyles();
+  var id;
+  if (
+    props.post !== undefined &&
+    props.user !== undefined
+  ) {
+    id = props.user.id;
+  }
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpenDialog = (event: any) => {
+    setOpen(true);
+  }
+
+  const handleCloseDialog = (event: any) => {
+    setOpen(false);
+  }
 
   return (
-    <div>
-      <List className={classes.root}>
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src={`https://picsum.photos/100?${props.post.userId}`} />
-          </ListItemAvatar>
-          <ListItemText
-            primary={props.post.title}
-            secondary={
-              <React.Fragment>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                  {props.post.body}
-                </Typography>
-                <br/>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                  {props.user.username}
-                </Typography>
-              </React.Fragment>
-            }
-          />
-        </ListItem>
-      </List>
-      <Divider variant="inset" component="li" />
-
+    <div className={"container-preview"}>
+      <Card className={"card-root"}>
+        <div className={"card-details"}>
+          <CardContent className={"card-content"}>
+            <Typography component="h5" variant="h5">
+              {props.post.title}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              {props.post.body}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" color="primary"
+              onClick={handleOpenDialog}
+            >
+              {username}
+            </Button>
+          </CardActions>
+          <UserModal isModalVisible={open} closeModal={handleCloseDialog} user={props.user}></UserModal>
+        </div>
+        <CardMedia
+          className={"card-cover"}
+          image={`https://picsum.photos/100?${id}`}
+          title="Live from sd album cover"
+        />
+      </Card>
+      <br />
+      <br />
+      <br />
     </div>
   );
 };
